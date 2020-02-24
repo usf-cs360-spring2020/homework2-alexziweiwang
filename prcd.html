@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-    <title>CS360: homework2 by Alex Wang</title>
+    <title>Parallel Coordinate Visualization</title>
 
     <!-- Load Bulma from CDN (consider saving it to repository instead) -->
     <!-- https://bulma.io/ -->
@@ -22,8 +22,10 @@
   <section class="hero is-primary is-bold">
     <div class="hero-body">
       <div class="container">
-        <h1 class="title">homework2</h1>
-        <h2 class="subtitle">using Tableau and D3.js(version 5)</h2>
+        <!-- TODO: Change title -->
+        <h1 class="title">Parallel Coordinate Visualization</h1>
+        <!-- TODO: Change subtitle -->
+        <h2 class="subtitle">Using RawGraph and d3.js (version5)</h2>
       </div>
     </div>
   </section>
@@ -34,8 +36,6 @@
   <nav class="navbar is-light" role="navigation" aria-label="main navigation">
     <div class="container">
       <div class="navbar-brand">
-        <!-- TODO: Change link to repository homepage if needed -->
-        <!-- TODO: Change which navbar-item is-active if needed -->
         <a class="navbar-item is-active" href="index.html">
           <span class="icon"><i class="fas fa-home"></i></span>
           <span>Home</span>
@@ -64,37 +64,29 @@
 
             <div class="navbar-dropdown">
               <a class="navbar-item">
+                <span class="icon"><i class="fas fa-chart-line"></i></span>
                 <span>Line Chart</span>
               </a>
               <a class="navbar-item">
+                <span class="icon"><i class="fas fa-chart-area"></i></span>
                 <span>Area Chart</span>
               </a>
 
               <hr class="navbar-divider">
 
               <a class="navbar-item">
+                <span class="icon"><i class="fas fa-chart-bar"></i></span>
                 <span>Bar Chart</span>
               </a>
               <a class="navbar-item">
+                <span class="icon"><i class="fas fa-chart-pie"></i></span>
                 <span>Pie Chart</span>
               </a>
             </div>
           </div>
         </div>
 
-        <!-- Right navbar items -->
-        <div class="navbar-end">
-          <!-- TODO: Update as needed -->
-          <a class="navbar-item" href="#about" title="About">
-            <span class="icon"><i class="fas fa-tasks"></i></span>
-            <span>Grade</span>
-          </a>
 
-          <a class="navbar-item" href="#about" title="About">
-            <span class="icon"><i class="fas fa-info-circle"></i></span>
-            <span>About</span>
-          </a>
-        </div>
       </div>
     </div>
   </nav>
@@ -105,19 +97,13 @@
       <!-- Begin page content -->
       <div class="content">
         <h1 class="title">
-          <!-- TODO: Change page title -->
-          Page Title
-        </h1>
+Parallel Coordinate Visualization        </h1>
         <p class="subtitle">
-          <!-- TODO: Change page subtitle -->
-          Page Subtitle
+TODO
         </p>
 
-        <p>This would be an excellent place to describe what this page is for, what to find in different sections, describe any motivation or theme behind your visualizations, and so on.</p>
-
-        <p>You should not use this template unless you intend to customize it. Make it your own. Keep in mind this simple template is over 300 lines! You can see other examples of websites using Bulma at their showcase: <a href="https://bulma.io/expo/">bulma.io/expo/</a>.</p>
-
         <h2 id="data">Data</h2>
+<!--TODO-->
 
         <p>Include some detailed information about the dataset here. You should <a href="#">add a link</a> to the original dataset. You might also want to quote the license:</p>
 
@@ -140,73 +126,225 @@
           <li><strong>Column Name:</strong> Give a description of the column, including its type and possible range of values.</li>
         </ol>
 
-        <p>This will of course differ depending on the assignment and data.</p>
+<!--TODO-->
+
 
         <h3 id="wrangling">Wrangling</h3>
 
-        <p>Perhaps you had to do some data wrangling to the original dataset to prepare it for visualization. This would be a great place to discuss some of that wrangling.
+        <p> This dataset was filted by "state" othat only showed data in CA(California).
 
-        <pre>
-You can even put code into these pre blocks.
-  It will preserve whitespace.
-    That is helpful for formatted code.
-        </pre>
 
-        <p>You can alternatively embed a Gist if you want. There is an "embed" button on <a href="https://gist.github.com/octocat/6cad326836d38bd3a7ae">the Gist page</a> and results in something like this:</p>
-
-        <script src="https://gist.github.com/octocat/6cad326836d38bd3a7ae.js"></script>
 
         <h2 id="visualizations">Visualizations</h2>
+<!--TODO prototye and d3 version... -->
 
-        <p>Ideally not everything would be on a single page like this example. Instead, you might want to put each section in its own webpage. You would need to carefully replicate the page template (with the header, navbar, and footer) and make the necessary updates. For example, you want the "About" navbar item to be considered active on an "About" web page.</p>
-
-        <p>For now this is just a demo. The buttons below do not go anywhere, but can be easily changed to link to different visualization pages.</p>
-
-        <p class="buttons">
-
-          <button class="button is-large is-info" onclick="window.location.href = 'bubble.html';">
-            <span>Bubble Chart</span>
-          </button>
+<h3>Prototype in RawGraph:</h3>
+<img src="prcd-pt-legend.png" width="210" height="280">
+<p> mr_ktop1_pq1_____________________________par_median_______________________________k_median______________________________mr_kq5_pq1 </p>
+<img src="prcd-pt3.png" width="960" height="500">
 
 
-          <button class="button is-large is-info" onclick="window.location.href = 'prcd.html';">
-
-            </span>
 
 
-            <span>Parallel Coordinates</span>
+<h3>D3 version:</h3>
+<div id="d3prcd">bubble plot here...</div>
+
+<script src="https://d3js.org/d3.v5.min.js"></script>
+
+<script>
+// set svg size and plot margins
+const width = 960;
+const height = 500;
+
+const margin = {
+  top: 50,
+  bottom: 35,
+  left: 35,
+  right: 15
+};
+
+// append the svg object to the body of the page
+var svg = d3.select("#d3prcd")
+  .append("svg")
+  .attr("width", width + margin.left + margin.right)
+  .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+  .attr("transform",
+        "translate(" + margin.left + "," + margin.top + ")");
 
 
-          </button>
 
-          <a class="button is-large is-info" href="#">
+let csv = 'prcd-ca3.csv';
 
-            </span>
-            <span>Bar Chart</span>
-          </a>
+d3.csv(csv).then(function (data){
+  console.log(data[0]);
+//  dimensions = d3.keys(data[0]).filter(function(d) { return d != "" && d != "name" && d != "state" })
+  let dimensions = ['mr_ktop1_pq1', 'par_median', 'k_median', 'mr_kq5_pq1'];
+//  console.log(dimensions.length);
+  var y = {}
+  for (i in dimensions) {
+    curr = dimensions[i]
+    y[curr] = d3.scaleLinear()
+    .domain( d3.extent(data, function(d) { return +d[curr]; }) )
+    .range([height, 0])
+    console.log(curr);
+  }
 
-          <a class="button is-large is-link" href="#">
+  x = d3.scalePoint()
+    .range([0, width])
+    .padding(1)
+    .domain(dimensions);
 
-            </span>
-            <span>Pie Chart</span>
-          </a>
-        </p>
 
-        <!-- https://github.com/vega/vega-embed#basic-example -->
-        <p>It is possible to embed some visualizations directly here too. Here is <a href="https://github.com/vega/vega-embed#basic-example">an example</a> using Vega-Lite:</p>
+  function path(d) {
+      return d3.line()(dimensions.map(function(p) { return [x(p), y[p](d[p])]; }));
+  }
 
-        <script src="https://cdn.jsdelivr.net/npm/vega@5.9.0"></script>
-        <script src="https://cdn.jsdelivr.net/npm/vega-lite@4.0.2"></script>
-        <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.2.1"></script>
+  // Draw the lines
+  svg
+    .selectAll("myPath")
+    .data(data)
+    .enter().append("path")
+    .attr("d",  path)
+    .style("fill", "none")
+    .style("stroke", "#5F42D6")
+    .style("opacity", 0.5)
 
-        <div id="vis"></div>
 
-        <script type="text/javascript">
-        var spec = "https://raw.githubusercontent.com/vega/vega/master/docs/examples/bar-chart.vg.json";
-        vegaEmbed('#vis', spec).then(function(result) {
-          // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
-        }).catch(console.error);
-        </script>
+    // Draw the axis:
+  svg.selectAll("myAxis")
+    // For each dimension of the dataset I add a 'g' element:
+    .data(dimensions).enter()
+    .append("g")
+    // I translate this element to its right position on the x axis
+    .attr("transform", function(d) { return "translate(" + x(d) + ")"; })
+    // And I build the axis with the call function
+    .each(function(d) { d3.select(this).call(d3.axisLeft().scale(y[d])); })
+    // Add axis title
+    .append("text")
+      .style("text-anchor", "middle")
+      .attr("y", -9)
+      .text(function(d) { return d; })
+      .style("fill", "black")
+
+})
+/*d3.csv(csv).then(function (data) {
+  //      console.log(data.length);
+        console.log(data[0]);
+
+        // Extract the list of dimensions as keys and create a y scale for each.
+        dimensions = d3.keys(data[0]).filter(function (key) {
+            if (key !== "" && key != "name" && key != "state") {
+                y[key] = d3.scaleLinear()
+                    .domain(d3.extent(data, function (d) { return +d[key]; }))
+                    .range([height, 0]);
+
+                    console.log(key);
+                return key;
+            };
+        });
+
+        // Create x axis scale.
+        x = d3.scalePoint()
+            .domain(dimensions)
+            .range([0, width]);
+
+        // Add grey background lines for context.
+        background = svg.append("g")
+            .attr("class", "background")
+            .selectAll("path")
+            .data(data)
+            .enter().append("path")
+            .attr("d", line);
+
+        // Draw lines
+        lines = svg.append("g")
+            .attr("class", "lines")
+            .selectAll("path")
+            .data(data).enter()
+            .append("path")
+            .attr("d", line);
+
+            // Add an axis and title.
+        svg.append("g")
+            .attr("class", "axis")
+            .each(function (d) { d3.select(this).call(d3.axisLeft().scale(y[d])); })
+            .append("text")
+            .style("text-anchor", "middle")
+            .attr("fill", "black")
+            .attr("font-size", "12")
+            .attr("y", -9)
+            .text(function (d) { return d; });
+
+        // Add and store a brush for each axis.
+        svg.append("g")
+            .attr("class", "brush")
+            .call(d3.brushY()
+                .extent([[-10, 0], [10, height]])
+                .on("start", brushstart)
+                .on("brush", brush)
+                .on("end", brush))
+            .selectAll("rect")
+            .attr("x", -8)
+            .attr("width", 16);
+    })
+    .catch(function (err) {
+        console.error(err);
+    });
+
+
+    // Take a row of the csv as input, and return x and y coordinates of the line to draw for this raw.
+function line(d) {
+    return d3.line()(dimensions.map(function (key) {
+        return [x(key), y[key](d[key])];
+    }));
+}
+
+function brushstart() {
+    d3.event.sourceEvent.stopPropagation();
+}
+
+// Handles a brush event, toggling the display of foreground lines.
+function brush() {
+    // Get a set of dimensions with active brushes and their current extent.
+    var actives = [];
+    svg.selectAll(".brush")
+        .filter(function (d) {
+            console.log(d3.brushSelection(this));
+            return d3.brushSelection(this);
+        })
+        .each(function (key) {
+            actives.push({
+                dimension: key,
+                extent: d3.brushSelection(this)
+            });
+        });
+    // Change line visibility based on brush extent.
+    if (actives.length === 0) {
+        lines.style("display", null);
+    } else {
+        lines.style("display", function (d) {
+            return actives.every(function (brushObj) {
+                return brushObj.extent[0] <= y[brushObj.dimension](d[brushObj.dimension]) && y[brushObj.dimension](d[brushObj.dimension]) <= brushObj.extent[1];
+            }) ? null : "none";
+        });
+    }
+}
+*/
+
+
+
+
+
+/*
+ * creates a svg translate string
+ */
+function translate(x, y) {
+return "translate(" + String(x) + "," + String(y) + ")";
+}
+
+</script>
+<!--TODO /prototye and d3 version... -->
 
         <h4>Instructions</h4>
 

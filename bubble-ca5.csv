@@ -1,0 +1,169 @@
+name,count,type,mobilityRate,parMedian
+Kern & North Orange County Community College Districts,8556.333333,1,0.027805742,63600
+Los Angeles Community College District,8129.333333,1,0.040576592,41400
+Los Rios Community College District,5873.333333,1,0.019838752,71900
+Coast Community College District,5334.666667,1,0.033638272,72800
+State Center Community College District,5160,1,0.023308825,47600
+Contra Costa Community College District,4957.666667,1,0.017630978,85400
+Ventura County Community College District,4747.333333,1,0.020021345,73700
+"University Of California, Los Angeles",4734,1,0.055962522,105500
+Mount San Antonio College,4660,1,0.029531231,62800
+"University Of California, Berkeley",4624.333333,1,0.048850957,114700
+San Diego Community College District,4152.666667,1,0.027009523,63200
+Foothill-Deanza Community College District,4000.666667,1,0.0255091,80200
+"University Of California, Davis",3996,1,0.044437986,109400
+Riverside Community College District,3868.333333,1,0.017877668,70800
+El Camino College,3618.333333,1,0.031190863,51600
+Palomar College,3595.333333,1,0.020778358,73500
+Grossmont-Cuyamaca Community College District,3461,1,0.01868738,77400
+"University Of California, Santa Barbara",3450.333333,1,0.030754454,124000
+Pasadena City College,3321.333333,1,0.048148058,44600
+"University Of California, San Diego",3264.666667,1,0.048327465,111300
+"University Of California, Irvine",3244.333333,1,0.067682147,92100
+Cerritos Community College,3216,1,0.033037066,45500
+San Diego State University,3196.333333,1,0.036618356,100500
+Long Beach City College,3148.666667,1,0.033059396,49900
+University Of Southern California,3052.666667,2,0.039329737,120100
+California Polytechnic State University,2887.666667,1,0.022484858,124800
+Santa Monica College,2886.666667,1,0.043851145,51300
+Yosemite Community College District,2879,1,0.022407206,66400
+"California State University, Long Beach",2863.666667,1,0.044307064,85800
+Chaffey Community College,2802.666667,1,0.017686883,66300
+Sierra College,2786.333333,1,0.012314454,85900
+San Mateo County Community College District,2601.666667,1,0.025767351,77000
+Southwestern Community College District,2576.5,1,0.023818141,54200
+Santa Rosa Junior College,2559.333333,1,0.017464565,80900
+Heald College,2428.333333,3,0.030289005,52400
+Chabot-Las Positas Community College District,2381.666667,1,0.015573887,84000
+"California State University, Fullerton",2374,1,0.047993153,83300
+"University Of California, Riverside",2364.333333,1,0.060172301,75000
+"California State University, Northridge",2348.666667,1,0.063248597,61100
+"University Of California, Santa Cruz",2341.666667,1,0.027699087,115400
+San Bernardino Community College District,2298.666667,1,0.02828251,55000
+Rancho Santiago Community College District,2269.333333,1,0.02645644,63600
+San Joaquin Delta College,2258.666667,1,0.022545097,66300
+"California State Polytechnic University, Pomona",2195.333333,1,0.06833405,80200
+San Jose State University,2182.333333,1,0.054279134,91700
+Saddleback College,2124.666667,1,0.011584052,100600
+"Universal Technical Institute of Rancho Cucamonga, CA",2105,3,0.032035813,62900
+San Francisco Community College District,2076.333333,1,0.036124796,53400
+California State University - Sacramento,2041.333333,1,0.033332288,88700
+Citrus Community College,2030.666667,1,0.0204411,66500
+Antelope Valley College,1904.666667,1,0.019280404,66600
+"California State University, Chico",1895.333333,1,0.01958406,112200
+Cuesta College,1881.333333,1,0.01772581,79900
+College Of The Canyons,1868.666667,1,0.015793353,88200
+San Francisco State University,1854.666667,1,0.034955118,87200
+Santa Barbara City College,1827,1,0.017995782,86100
+College Of The Sequoias,1764.666667,1,0.025295895,51500
+Butte College,1751,1,0.019575922,64100
+"California State University, Fresno",1656.333333,1,0.041856874,72400
+Cabrillo College,1641,1,0.017490042,70200
+West Valley-Mission Community College District,1567.333333,1,0.023581915,91600
+Rio Hondo Community College,1545.333333,1,0.034616757,46500
+San Jose-Evergreen Community College District,1523,1,0.02991337,67900
+Solano Community College,1518.333333,1,0.010828887,84300
+Stanford University,1516.333333,2,0.022457635,172600
+Mt. San Jacinto College,1448,1,0.016137306,71000
+Glendale Community College,1437,1,0.070821285,40100
+Miracosta College,1413.333333,1,0.015323631,71200
+Victor Valley Community College,1378.666667,1,0.021405781,62600
+College Of The Desert,1342.666667,1,0.032123238,44900
+Merced Community College,1336.333333,1,0.022773577,48400
+Hartnell Community College,1280,1,0.02964537,51800
+Yuba Community College District,1240.666667,1,0.023529511,48700
+Allan Hancock College,1220,1,0.019464159,65700
+"California State University, Los Angeles",1179.666667,1,0.09918455,36600
+United Education Institute,1165,3,0.02239546,29600
+"California State University, San Bernardino",1151.666667,1,0.043982204,69800
+College Of The Redwoods,1064.666667,1,0.014106999,59900
+Ohlone College,1059.333333,1,0.02065892,91100
+Loyola Marymount University,1016,2,0.024588708,131800
+Santa Clara University,989.6666667,2,0.022468021,149900
+Las Positas College,988.5,1,0.0080153681,109500
+Fashion Institute Of Design & Merchandising,932.5,3,0.0252064,76300
+Sonoma State University,907.6666667,1,0.017271277,113700
+University Of San Diego,894,2,0.023036603,139300
+Imperial Valley College,885.6666667,1,0.048198018,34300
+Napa Valley College,837,1,0.0163964,75000
+West Hills Community College District,808,1,0.026258452,46100
+Humboldt State University,736.6666667,1,0.016260199,96000
+Monterey Peninsula College,722.3333333,1,0.018193007,66100
+Irvine Valley College,708.3333333,1,0.0234816,81200
+"California State University, East Bay",696.6666667,1,0.043488853,86000
+Azusa Pacific University,647,2,0.015201175,103700
+University Of The Pacific,617.6666667,2,0.04254083,96500
+University Of San Francisco,606.3333333,2,0.027077734,106900
+"California State University, Stanislaus",603,1,0.038550034,72300
+Chapman University,603,2,0.017024867,109600
+"Marinello School Of Beauty, Xenon International Academy, International School Of Skin And Nailcare And Hair Professionals Academy",591.3333333,3,0.0073281811,44200
+Gavilan College,588.6666667,1,0.01774694,80500
+College Of Marin,580.6666667,1,0.017165836,82000
+Pepperdine University,569.3333333,2,0.018597502,124100
+"California State University, Bakersfield",542.6666667,1,0.04607648,67700
+San Joaquin Valley College,536.5,3,0.027570302,36000
+Biola University,535,2,0.017981296,95300
+Saint Mary's College Of California,509.6666667,2,0.029426431,110500
+Point Loma Nazarene University,501.6666667,2,0.014089341,113300
+Academy Of Art University,495.6666667,3,0.01635739,92300
+"American Career College of Los Angeles, CA",489.5,3,0.019744419,30400
+Mendocino College,482,1,0.012631007,51900
+Barstow Community College,478,1,0.034888964,58000
+"California State University, Dominguez Hills",451.3333333,1,0.056009766,45600
+Carrington College California,434.5,3,0.0170296,47900
+"California State University, San Marcos",427.6666667,1,0.020967012,93600
+Westwood College - Los Angeles,412.5,3,0.017930759,37800
+University Of Redlands,397.3333333,2,0.017173236,108400
+Occidental College,380,2,0.033389218,122400
+Pomona College,369.3333333,2,0.019502569,161600
+College Of The Siskiyous,345,1,0.019861612,57500
+Lake Tahoe Community College,340.6666667,1,0.013964919,64600
+Copper Mountain College,327,1,0.038822509,50100
+"California State University, Monterey Bay",322.6666667,1,0.033873096,93200
+California Lutheran University,300,2,0.012286789,110600
+Westmont College,296.6666667,2,0.010913183,132100
+Lassen College,292,1,0.018295955,64200
+Center For Employment Training,290,2,0.01181031,29300
+University Of La Verne,285.3333333,2,0.036298785,72300
+Claremont Mckenna College,266,2,0.029592477,142000
+Whittier College,251,2,0.029580679,98500
+Brooks Institute,250.1666667,3,0.010514108,95300
+"Milan Institute of Palm Desert, CA",242,3,0,35800
+Vanguard University Of Southern California,240.3333333,2,0.011353597,83200
+Pacific Union College,233,2,0.027723918,96400
+"Paul Mitchell The School of Costa Mesa, CA",227,3,0.00029449805,85200
+Mount St. Mary's College,222.3333333,2,0.063886866,48500
+International Career Development Center,215,3,0.01266721,29500
+Master's College & Seminary,213.6666667,2,0.010637505,87700
+La Sierra University,205,2,0.032972757,81300
+"Concordia University of Irvine, CA",201,2,0.014180595,94000
+California Baptist University,197.3333333,2,0.023633266,82600
+Pitzer College,192,2,0.022146214,131900
+California Institute Of Technology,190.6666667,2,0.031777687,124500
+Scripps College,185,2,0.025185836,126300
+Feather River College,179,1,0.015292063,66000
+Glendale Career College,172,3,0.032009132,33200
+Musicians Institute,170.5,3,0.0032767779,77400
+Santa Barbara Business College,167,3,0.0052685547,39400
+Harvey Mudd College,164,2,0.029232727,139800
+Simpson University,161,2,0.016695656,72700
+Fresno Pacific University,160.6666667,2,0.037159514,71100
+Summit College,160,3,0.01927687,39600
+Crimson Technical College,156,3,0.075222887,44700
+California Culinary Academy,154,3,0.016258487,66000
+Taft College,153.5,1,0.033660512,62300
+Dominican University Of California,137.6666667,2,0.031980876,98100
+"Le Cordon Bleu College Of Culinary Arts of Pasadena, CA",131.6666667,3,0.02866322,64800
+Otis College Of Art & Design,124,2,0.042668778,80500
+California College Of The Arts,123.6666667,2,0.0085592549,90100
+California Institute Of The Arts,122.6666667,2,0.009437901,108700
+Argosy University,119,3,0.00085495313,84000
+Woodbury University,115.6666667,2,0.06364359,61900
+Mills College,115,2,0.032862529,79100
+Marymount California University,110,2,0.018336337,104900
+Art Center College Of Design,109.5,2,0.04573692,84800
+"Platt College of Alhambra, CA",99.66666667,3,0.035378132,48500
+MTI College,98,3,0.014236747,48400
+California Maritime Academy,92,1,0.050363775,113100
+Westwood College - South Bay,52.5,3,0.031802882,39500
+California State University Channel Islands,50,1,0.015977334,96300

@@ -36,8 +36,6 @@
   <nav class="navbar is-light" role="navigation" aria-label="main navigation">
     <div class="container">
       <div class="navbar-brand">
-        <!-- TODO: Change link to repository homepage if needed -->
-        <!-- TODO: Change which navbar-item is-active if needed -->
         <a class="navbar-item is-active" href="index.html">
           <span class="icon"><i class="fas fa-home"></i></span>
           <span>Home</span>
@@ -88,19 +86,7 @@
           </div>
         </div>
 
-        <!-- Right navbar items -->
-        <div class="navbar-end">
-          <!-- TODO: Update as needed -->
-          <a class="navbar-item" href="#about" title="About">
-            <span class="icon"><i class="fas fa-tasks"></i></span>
-            <span>Grade</span>
-          </a>
 
-          <a class="navbar-item" href="#about" title="About">
-            <span class="icon"><i class="fas fa-info-circle"></i></span>
-            <span>About</span>
-          </a>
-        </div>
       </div>
     </div>
   </nav>
@@ -111,19 +97,14 @@
       <!-- Begin page content -->
       <div class="content">
         <h1 class="title">
-          <!-- TODO: Change page title -->
-          Page Title
+          Mobility Rate and Median Parent Household Income in various colleges in California
         </h1>
         <p class="subtitle">
-          <!-- TODO: Change page subtitle -->
-          Page Subtitle
+          Bubble Chart
         </p>
 
-        <p>This would be an excellent place to describe what this page is for, what to find in different sections, describe any motivation or theme behind your visualizations, and so on.</p>
-
-        <p>You should not use this template unless you intend to customize it. Make it your own. Keep in mind this simple template is over 300 lines! You can see other examples of websites using Bulma at their showcase: <a href="https://bulma.io/expo/">bulma.io/expo/</a>.</p>
-
         <h2 id="data">Data</h2>
+<!--TODO-->
 
         <p>Include some detailed information about the dataset here. You should <a href="#">add a link</a> to the original dataset. You might also want to quote the license:</p>
 
@@ -146,45 +127,159 @@
           <li><strong>Column Name:</strong> Give a description of the column, including its type and possible range of values.</li>
         </ol>
 
-        <p>This will of course differ depending on the assignment and data.</p>
+<!--TODO-->
+
 
         <h3 id="wrangling">Wrangling</h3>
 
-        <p>Perhaps you had to do some data wrangling to the original dataset to prepare it for visualization. This would be a great place to discuss some of that wrangling.
+        <p> This dataset was filted by "state" othat only showed data in CA(California).
 
-        <pre>
-You can even put code into these pre blocks.
-  It will preserve whitespace.
-    That is helpful for formatted code.
-        </pre>
 
-        <p>You can alternatively embed a Gist if you want. There is an "embed" button on <a href="https://gist.github.com/octocat/6cad326836d38bd3a7ae">the Gist page</a> and results in something like this:</p>
-
-        <script src="https://gist.github.com/octocat/6cad326836d38bd3a7ae.js"></script>
 
         <h2 id="visualizations">Visualizations</h2>
+<!--TODO prototye and d3 version... -->
 
-        <p>Ideally not everything would be on a single page like this example. Instead, you might want to put each section in its own webpage. You would need to carefully replicate the page template (with the header, navbar, and footer) and make the necessary updates. For example, you want the "About" navbar item to be considered active on an "About" web page.</p>
+<h3>Prototype in Tableau:</h3>
+<img src="360hw2-bubble2.png" width="960" height="500">
 
-        <p>For now this is just a demo. The buttons below do not go anywhere, but can be easily changed to link to different visualization pages.</p>
+<h3>D3 version:</h3>
+<div id="d3bubble">bubble plot here...</div>
+
+<script src="https://d3js.org/d3.v5.min.js"></script>
+
+<script>
+// set svg size and plot margins
+const width = 960;
+const height = 500;
+
+const margin = {
+  top: 10,
+  bottom: 35,
+  left: 35,
+  right: 15
+};
+
+const svg = d3.select("svg#d3bubble");
+
+svg.attr("width", width);
+svg.attr("height", height);
+
+const plot = svg.append("g");
+plot.attr("id", "plot");
+plot.attr('transform', translate(config.plot.x, config.plot.y));
+const scales = {
+  x: d3.scaleLinear(),
+  y: d3.scaleLinear(),
+  r: d3.scaleSqrt(), // area = pi * r * r
+  fill: d3.scaleDiverging(d3.interpolateRdYlGn)
+};
+
+scales.x.range([0, width - margin.left - margin.right]);
+scales.x.domain([20000, 185000]);
+
+scales.y.range([height - margin.top - margin.bottom, 0]);
+scales.y.domain([-0.5, 10.5]);
+
+scales.r.range([1, 20]).domain([0, 9000]);
+scales.fill.domain([-20, 0, 35]);
+
+//drawAxis();
+//drawTitles();
+//drawColorLegend();
+//drawCircleLegend();
+
+let csv = 'bubble-ca5.csv';
+d3.csv(csv, drawAxis).then(drawBubbles);
+
+/*
+ * create axis lines
+ */
+function drawAxis() {
+  // place the xaxis and yaxis in their own groups
+  const xGroup = svg.append('g').attr('id', 'x-axis').attr('class', 'axis');
+  const yGroup = svg.append('g').attr('id', 'y-axis').attr('class', 'axis');
+
+  // create axis generators
+  const xAxis = d3.axisBottom(scales.x);
+  const yAxis = d3.axisLeft(scales.y);
+
+  // https://github.com/d3/d3-format#locale_formatPrefix
+  xAxis.ticks(9, 's').tickSizeOuter(0);
+  yAxis.ticks(6).tickSizeOuter(0);;
+
+  // shift x axis to correct location
+//  xGroup.attr('transform', 'translate(margin.left, height - margin.bottom)');
+  xGroup.call(xAxis);
+
+  // shift y axis to correct location
+//  yGroup.attr('transform', 'translate(margin.left, margin.top)')
+  yGroup.call(yAxis);
+  console.log("axis done...");
+}
+
+/*
+ * draw axis titles
+ */
+function drawTitles() {
+  const xTitle = svg.append('text')
+    .attr('class', 'axis-title')
+    .text('Median Parent Household Income');
+
+  xTitle.attr('x', xMiddle);
+  xTitle.attr('y', height);
+  xTitle.attr('dy', -4);
+  xTitle.attr('text-anchor', 'middle');
+
+  // it is easier to rotate text if you place it in a group first
+  // https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function/rotate
+
+  const yGroup = svg.append('g');
+
+  // set the position by translating the group
+  yGroup.attr('transform', translate(4, yMiddle));
+
+  const yTitle = yGroup.append('text')
+    .attr('class', 'axis-title')
+    .text('Mobility Rate');
+
+  // keep x, y at 0, 0 for rotation around the origin
+  yTitle.attr('x', 0);
+  yTitle.attr('y', 0);
+
+  yTitle.attr('dy', '1.75ex');
+  yTitle.attr('text-anchor', 'middle');
+  yTitle.attr('transform', 'rotate(-90)');
+}
 
 
 
-        <!-- https://github.com/vega/vega-embed#basic-example -->
-        <p>It is possible to embed some visualizations directly here too. Here is <a href="https://github.com/vega/vega-embed#basic-example">an example</a> using Vega-Lite:</p>
+/*
+ * draw bubbles
+ */
+function drawBubbles(data) {
+  // place all of the bubbles in their own group
+  const group = plot.append('g').attr('id', 'bubbles');
 
-        <script src="https://cdn.jsdelivr.net/npm/vega@5.9.0"></script>
-        <script src="https://cdn.jsdelivr.net/npm/vega-lite@4.0.2"></script>
-        <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.2.1"></script>
+  const bubbles = group.selectAll('circle')
+    .data(data)
+    .enter()
+    .append('circle');
 
-        <div id="vis"></div>
+  // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions
+  bubbles.attr('cx', d => scales.x(d.parMedian));
+  bubbles.attr('cy', d => scales.y(d.mobilityRate));
+  bubbles.attr('r',  d => scales.r(d.count));
 
-        <script type="text/javascript">
-        var spec = "https://raw.githubusercontent.com/vega/vega/master/docs/examples/bar-chart.vg.json";
-        vegaEmbed('#vis', spec).then(function(result) {
-          // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
-        }).catch(console.error);
-        </script>
+  bubbles.style('stroke', 'black');
+  bubbles.style('fill', d => scales.fill(d.trend));
+}
+
+
+
+
+
+</script>
+<!--TODO /prototye and d3 version... -->
 
         <h4>Instructions</h4>
 
