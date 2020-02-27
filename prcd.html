@@ -136,18 +136,19 @@ TODO
 
 
         <h2 id="visualizations">Visualizations</h2>
-<!--TODO prototye and d3 version... -->
 
-<h3>Prototype in RawGraph:</h3>
-<img src="prcd-pt-legend.png" width="210" height="280">
-<p> mr_ktop1_pq1_____________________________par_median_______________________________k_median______________________________mr_kq5_pq1 </p>
-<img src="prcd-pt3.png" width="960" height="500">
-
-
+<h3>Prototype in RAWGraphs:</h3>
+<img src="pt5011-label.png" width="210" height="280">
+<p>Color represents the "type" of each college(blue for "public", orange for "private non-profit" and orange for "for-profit")</p>
+<img src="pt5011.png" width="960" height="500">
+<p> _______par-mean______________k-mean_____________mobility-rate_______mobility-rate(to-top1%)_______k-median____________par-median___</p>
+<p>Note: since (it happends most of the time) on RAWGraphs, the numbers on left-most axis would be cut-off and only showing partial numbers,
+  the table was added with a "buffer" column to the left of the real first column axis.
+  Also the labels for column axis would not show with RAWGraphs generator, thus the data-adding stack is provided for the sequence of columns.</p>
 
 
 <h3>D3 version:</h3>
-<div id="d3prcd">bubble plot here...</div>
+<div id="d3prcd"></div>
 
 <script src="https://d3js.org/d3.v5.min.js"></script>
 
@@ -172,14 +173,19 @@ var svg = d3.select("#d3prcd")
   .attr("transform",
         "translate(" + margin.left + "," + margin.top + ")");
 
+var color = d3.scaleOrdinal()
+  .domain(["1", "2", "3" ])
+  .range([ "#91bdf0", "#f5992d", "#f75f5f"])
 
-
-let csv = 'prcd-ca3.csv';
+let csv = 'filtered-prcd05-ca5.csv';
 
 d3.csv(csv).then(function (data){
   console.log(data[0]);
+  //<p>k-mean_____________mobility-rate_______mobility-rate(to-top1%)_________k-mean_____________par-mean___</p>
+
 //  dimensions = d3.keys(data[0]).filter(function(d) { return d != "" && d != "name" && d != "state" })
-  let dimensions = ['mr_ktop1_pq1', 'par_median', 'k_median', 'mr_kq5_pq1'];
+  let dimensions = ['par_mean', 'k_mean','mr_kq5_pq1', 'mr_ktop1_pq1', 'k_median', 'par_median'];
+
 //  console.log(dimensions.length);
   var y = {}
   for (i in dimensions) {
@@ -207,7 +213,7 @@ d3.csv(csv).then(function (data){
     .enter().append("path")
     .attr("d",  path)
     .style("fill", "none")
-    .style("stroke", "#5F42D6")
+    .style("stroke", function(d){ return( color(d.type))} )
     .style("opacity", 0.5)
 
 
@@ -228,112 +234,6 @@ d3.csv(csv).then(function (data){
       .style("fill", "black")
 
 })
-/*d3.csv(csv).then(function (data) {
-  //      console.log(data.length);
-        console.log(data[0]);
-
-        // Extract the list of dimensions as keys and create a y scale for each.
-        dimensions = d3.keys(data[0]).filter(function (key) {
-            if (key !== "" && key != "name" && key != "state") {
-                y[key] = d3.scaleLinear()
-                    .domain(d3.extent(data, function (d) { return +d[key]; }))
-                    .range([height, 0]);
-
-                    console.log(key);
-                return key;
-            };
-        });
-
-        // Create x axis scale.
-        x = d3.scalePoint()
-            .domain(dimensions)
-            .range([0, width]);
-
-        // Add grey background lines for context.
-        background = svg.append("g")
-            .attr("class", "background")
-            .selectAll("path")
-            .data(data)
-            .enter().append("path")
-            .attr("d", line);
-
-        // Draw lines
-        lines = svg.append("g")
-            .attr("class", "lines")
-            .selectAll("path")
-            .data(data).enter()
-            .append("path")
-            .attr("d", line);
-
-            // Add an axis and title.
-        svg.append("g")
-            .attr("class", "axis")
-            .each(function (d) { d3.select(this).call(d3.axisLeft().scale(y[d])); })
-            .append("text")
-            .style("text-anchor", "middle")
-            .attr("fill", "black")
-            .attr("font-size", "12")
-            .attr("y", -9)
-            .text(function (d) { return d; });
-
-        // Add and store a brush for each axis.
-        svg.append("g")
-            .attr("class", "brush")
-            .call(d3.brushY()
-                .extent([[-10, 0], [10, height]])
-                .on("start", brushstart)
-                .on("brush", brush)
-                .on("end", brush))
-            .selectAll("rect")
-            .attr("x", -8)
-            .attr("width", 16);
-    })
-    .catch(function (err) {
-        console.error(err);
-    });
-
-
-    // Take a row of the csv as input, and return x and y coordinates of the line to draw for this raw.
-function line(d) {
-    return d3.line()(dimensions.map(function (key) {
-        return [x(key), y[key](d[key])];
-    }));
-}
-
-function brushstart() {
-    d3.event.sourceEvent.stopPropagation();
-}
-
-// Handles a brush event, toggling the display of foreground lines.
-function brush() {
-    // Get a set of dimensions with active brushes and their current extent.
-    var actives = [];
-    svg.selectAll(".brush")
-        .filter(function (d) {
-            console.log(d3.brushSelection(this));
-            return d3.brushSelection(this);
-        })
-        .each(function (key) {
-            actives.push({
-                dimension: key,
-                extent: d3.brushSelection(this)
-            });
-        });
-    // Change line visibility based on brush extent.
-    if (actives.length === 0) {
-        lines.style("display", null);
-    } else {
-        lines.style("display", function (d) {
-            return actives.every(function (brushObj) {
-                return brushObj.extent[0] <= y[brushObj.dimension](d[brushObj.dimension]) && y[brushObj.dimension](d[brushObj.dimension]) <= brushObj.extent[1];
-            }) ? null : "none";
-        });
-    }
-}
-*/
-
-
-
 
 
 /*
