@@ -22,7 +22,8 @@
   <section class="hero is-primary is-bold">
     <div class="hero-body">
       <div class="container">
-        <h1 class="title">Parallel Coordinate Visualization</h1>
+        <h1 class="title">Parallel Coordinate Visualization:             Distribution of mobility rate among public and private colleges
+</h1>
         <h2 class="subtitle">Using RawGraph and d3.js (version5)</h2>
       </div>
     </div>
@@ -75,7 +76,7 @@
         <h1 class="title">
             Parallel Coordinate Visualization</h1>
         <p class="subtitle">
-              TODO
+            Distribution of mobility rate among public and private colleges
         </p>
 
         <h2 id="data">Data</h2>
@@ -292,42 +293,7 @@ return "translate(" + String(x) + "," + String(y) + ")";
         </a>
       </p>
 
-      <p>
-        <!-- TODO: Change to link to your Github repository -->
-        <a href="https://github.com/usf-cs360-spring2020/template-bulma" class="button is-small" style="padding-left: 1em; padding-right: 1em;">
-          <i class="fab fa-github-alt"></i>&nbsp;<strong>Github</strong>
-        </a>
 
-        <a href="https://fontawesome.com/" class="button is-small" style="padding-left: 1em; padding-right: 1em;">
-          <i class="fab fa-font-awesome"></i>&nbsp;<strong>FontAwesome</strong>
-        </a>
-
-        <a href="https://bulma.io" class="button is-small">
-          <img src="https://bulma.io/images/made-with-bulma--semiblack.png" alt="Made with Bulma" width="128" height="24">
-        </a>
-      </p>
-    </div>
-  </footer>
-  <!-- End page footer -->
-
-  <!-- Mobile menu responsiveness -->
-  <!-- https://bulma.io/documentation/components/navbar/ -->
-  <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
-
-    if ($navbarBurgers.length > 0) {
-      $navbarBurgers.forEach( el => {
-        el.addEventListener('click', () => {
-          const target = el.dataset.target;
-          const $target = document.getElementById(target);
-          el.classList.toggle('is-active');
-          $target.classList.toggle('is-active');
-        });
-      });
-    }
-  });
-  </script>
   <!-- End mobile menu responsiveness -->
   </body>
 
