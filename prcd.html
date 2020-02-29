@@ -22,9 +22,7 @@
   <section class="hero is-primary is-bold">
     <div class="hero-body">
       <div class="container">
-        <!-- TODO: Change title -->
         <h1 class="title">Parallel Coordinate Visualization</h1>
-        <!-- TODO: Change subtitle -->
         <h2 class="subtitle">Using RawGraph and d3.js (version5)</h2>
       </div>
     </div>
@@ -49,45 +47,23 @@
       </div>
 
       <div id="main-menu" class="navbar-menu has-text-weight-medium">
-        <!-- Left navbar items -->
+        <!-- navbar items -->
         <div class="navbar-start">
           <a class="navbar-item" href="#data" title="Data">
-            <span class="icon"><i class="fas fa-table"></i></span>
+
             <span>Data</span>
           </a>
 
-          <!-- TODO: Modify or remove dropdown -->
-          <div class="navbar-item has-dropdown is-hoverable">
-            <a class="navbar-link">
-              Visualizations
-            </a>
+          <a class="navbar-item" href="#visualizations" title="Data">
 
-            <div class="navbar-dropdown">
-              <a class="navbar-item">
-                <span class="icon"><i class="fas fa-chart-line"></i></span>
-                <span>Line Chart</span>
-              </a>
-              <a class="navbar-item">
-                <span class="icon"><i class="fas fa-chart-area"></i></span>
-                <span>Area Chart</span>
-              </a>
+            <span>Visualizations: graphs</span>
+          </a>
 
-              <hr class="navbar-divider">
+          <a class="navbar-item" href="#writeup" title="Data">
 
-              <a class="navbar-item">
-                <span class="icon"><i class="fas fa-chart-bar"></i></span>
-                <span>Bar Chart</span>
-              </a>
-              <a class="navbar-item">
-                <span class="icon"><i class="fas fa-chart-pie"></i></span>
-                <span>Pie Chart</span>
-              </a>
-            </div>
-          </div>
+            <span>Writeup</span>
+          </a>
         </div>
-
-
-      </div>
     </div>
   </nav>
   <!-- End page navigation -->
@@ -97,41 +73,34 @@
       <!-- Begin page content -->
       <div class="content">
         <h1 class="title">
-Parallel Coordinate Visualization        </h1>
+            Parallel Coordinate Visualization</h1>
         <p class="subtitle">
-TODO
+              TODO
         </p>
 
         <h2 id="data">Data</h2>
-<!--TODO-->
 
-        <p>Include some detailed information about the dataset here. You should <a href="#">add a link</a> to the original dataset. You might also want to quote the license:</p>
 
-        <blockquote>
-          <p>
-            "This data is made available under the Public Domain Dedication and License v1.0 whose full text can be found at: <a href="http://www.opendatacommons.org/licenses/pddl/1.0/">www.opendatacommons.org/licenses/pddl/1.0/</a>"
-          </p>
-          <cite>Put a citation here, possibly link to the dataset license information directly.</cite>
-        </blockquote>
-
-        <p>In addition to including a link to the source and license, you should describe the data. You might want a list of some sort to enumerate the different types of columns:</p>
+        <p>In this visualization, 6 of the columns are used: </p>
 
         <ol>
-          <li><strong>Column Name:</strong> Give a description of the column, including its type and possible range of values.</li>
+          <li><strong>par_mean:</strong> Mean parental income</li>
 
-          <li><strong>Column Name:</strong> Give a description of the column, including its type and possible range of values.</li>
+          <li><strong>k_mean:</strong> Mean kid earnings</li>
 
-          <li><strong>Column Name:</strong> Give a description of the column, including its type and possible range of values.</li>
+          <li><strong>mr_kq5_pq1:</strong> Mobility rate (joint probability of parents in bottom quintile and child in top quintile of the income distribution)</li>
 
-          <li><strong>Column Name:</strong> Give a description of the column, including its type and possible range of values.</li>
+          <li><strong>mr_ktop1_pq1:</strong> Upper-tail mobility rate (joint probability of parents in bottom quintile and child in top 1% of the income distribution)</li>
+
+          <li><strong>k_median:</strong> Median child individual earnings in 2014 (rounded to the nearest $100)</li>
+
+          <li><strong>par_median:</strong> Median parent household income (rounded to nearest $100)</li>
+
         </ol>
-
-<!--TODO-->
-
 
         <h3 id="wrangling">Wrangling</h3>
 
-        <p> This dataset was filted by "state" othat only showed data in CA(California).
+        <p> This dataset was filted (with filter function in GoogleSheets) by "state" column and only showed the data in CA (California).
 
 
 
@@ -143,8 +112,8 @@ TODO
 <img src="pt5011.png" width="960" height="500">
 <p> _______par-mean______________k-mean_____________mobility-rate_______mobility-rate(to-top1%)_______k-median____________par-median___</p>
 <p>Note: since (it happends most of the time) on RAWGraphs, the numbers on left-most axis would be cut-off and only showing partial numbers,
-  the table was added with a "buffer" column to the left of the real first column axis.
-  Also the labels for column axis would not show with RAWGraphs generator, thus the data-adding stack is provided for the sequence of columns.</p>
+  the table was added with a "buffer" column to the left of the real first column axis, so that the numbers could show completely.
+  Also the labels for column axis would not show with RAWGraphs generator, thus the input data-adding stack on the website is provided for the sequence of columns.</p>
 
 
 <h3>D3 version:</h3>
@@ -160,7 +129,7 @@ const height = 500;
 const margin = {
   top: 50,
   bottom: 35,
-  left: 35,
+  left: 60,
   right: 15
 };
 
@@ -173,15 +142,18 @@ var svg = d3.select("#d3prcd")
   .attr("transform",
         "translate(" + margin.left + "," + margin.top + ")");
 
+var keys = ["1", "2", "3"]
+
+
+
 var color = d3.scaleOrdinal()
-  .domain(["1", "2", "3" ])
+  .domain(keys)
   .range([ "#91bdf0", "#f5992d", "#f75f5f"])
 
 let csv = 'filtered-prcd05-ca5.csv';
 
 d3.csv(csv).then(function (data){
   console.log(data[0]);
-  //<p>k-mean_____________mobility-rate_______mobility-rate(to-top1%)_________k-mean_____________par-mean___</p>
 
 //  dimensions = d3.keys(data[0]).filter(function(d) { return d != "" && d != "name" && d != "state" })
   let dimensions = ['par_mean', 'k_mean','mr_kq5_pq1', 'mr_ktop1_pq1', 'k_median', 'par_median'];
@@ -233,6 +205,40 @@ d3.csv(csv).then(function (data){
       .text(function(d) { return d; })
       .style("fill", "black")
 
+
+
+    var size = 20
+    svg.selectAll("mydots")
+      .data(keys)
+      .enter()
+      .append("rect")
+        .attr("x", -50)
+        .attr("y", function(d,i){ return i*(size+5) - 50})
+        .attr("width", size)
+        .attr("height", size)
+        .style("fill", function(d){ return color(d)})
+
+//function(d,i){ return 100 + i*(size+5) + (size/2)}
+    svg.selectAll("mylabels")
+      .data(keys)
+      .enter()
+      .append("text")
+        .attr("x", size*1.2 - 50)
+        .attr("y", function(d,i){ return i*(size+5) + (size/2) - 50}) // 100 is where the first dot appears. 25 is the distance between dots
+        .style("fill", function(d){ return color(d)})
+        .text(function(d){
+            if(d === '1') {
+              return d + ": public"}
+              else if(d === '2'){
+              return d + ": privatenon-profit"} else {
+                return d + ": for-profit"
+              }
+            }
+            )
+        .attr("text-anchor", "left")
+        .style("alignment-baseline", "middle")
+
+
 })
 
 
@@ -244,123 +250,36 @@ return "translate(" + String(x) + "," + String(y) + ")";
 }
 
 </script>
-<!--TODO /prototye and d3 version... -->
 
-        <h4>Instructions</h4>
+<ol>
+  <li><strong>par_mean:</strong> Mean parental income</li>
 
-        <p>You will likely need to include instructions on how to interpet and use the visualization. In the case above, if you click the three dots <i class="fas fa-ellipsis-h has-text-grey-light	"></i> above it will open a menu where you can either save the visualization to a SVG or PNG, or alternatively open it up in the online Vega Editor.</p>
+  <li><strong>k_mean:</strong> Mean kid earnings</li>
 
-        <h4>Discussion</h4>
+  <li><strong>mr_kq5_pq1:</strong> Mobility rate (joint probability of parents in bottom quintile and child in top quintile of the income distribution)</li>
 
-        <p>You may also need other sections, like a discussion section, per-visualization section on data wrangling, and others. Because of the extra content and code visualizations take, it might be worthwhile to break up your pages into one home page and then one page per visualization.</p>
+  <li><strong>mr_ktop1_pq1:</strong> Upper-tail mobility rate (joint probability of parents in bottom quintile and child in top 1% of the income distribution)</li>
 
-        <span class="heading">Acknowledgements</span>
+  <li><strong>k_median:</strong> Median child individual earnings in 2014 (rounded to the nearest $100)</li>
 
-        <p>
-          <a href="#">Link to insiration</a><br/>
-          <a href="#">Link to StackOverflow snippet</a>
+  <li><strong>par_median:</strong> Median parent household income (rounded to nearest $100)</li>
+
+</ol>
+
+<h3 id = "writeup"> Writeup </h3>
+
+        <p> Among the 6 axis in the graph. the 3rd and 4th axis are mobility rates(in different scales though). Whether dear readers read the axis from left to middle or from right to middle,
+            you would see parents' income -> kids' income -> the mobility rate. This shows how the income between generations change and in which direction it is causing a high mobility rate.
         </p>
 
-        <p class="is-6">
-          <em>Thanks to Person Name for their suggestion to do something with the visualization.</em>
+        <p> From the color, we could see that mobility rate of public colleges are concentrating and mostly lower than that of the private non-profit colleges.
         </p>
 
-        <h2 id="grade">Grade</h2>
+        <p> Between the "top 20% kids-bottom 20% parents mobility rate axis" and "top 1% kids-bottom 20% parents mobility rate axis", there are huge declines.
+            Also the latter has much more concentrated data in extremely small values.
+            It seems that transition of income from bottom quintile to top quintile is still possible and happening, but from bottom 20% to top %1 income is really difficult and uncommon.
 
-        <!-- TODO: Remove custom style if no longer needed -->
-        <style>
-          table.grades tbody tr td:nth-child(1),
-          table.grades tbody tr td:nth-child(2) {
-            text-align: center;
-          }
-        </style>
-
-        <!-- TODO: Change or remove table -->
-        <!-- https://bulma.io/documentation/elements/table/ -->
-        <table class="table is-hoverable is-bordered grades">
-          <thead>
-            <tr>
-              <th>Letter</th>
-              <th>Done?</th>
-              <th>Description</th>
-            </tr>
-          </thead>
-
-          <tbody>
-            <tr>
-              <td>D</td>
-              <td><i class="has-text-success fas fa-check-circle"></i></td>
-              <td>Discussion of how this grade level was satisfied. Exactly how this section should look will depend on the assignment in question. There is no requirement for formatting in this way. This is just an example of what a table element might look like for this informaiton.</td>
-            </tr>
-
-            <tr>
-              <td>C</td>
-              <td><i class="has-text-success fas fa-check-circle"></i></td>
-              <td>Discussion of how this grade level was satisfied.</td>
-            </tr>
-
-            <tr>
-              <td>B</td>
-              <td><i class="has-text-warning far fa-check-circle"></i></td>
-              <td>Discussion of how this grade level was satisfied.</td>
-            </tr>
-
-            <tr>
-              <td>A</td>
-              <td><i class="has-text-danger fas fa-times-circle"></i></td>
-              <td>Discussion of how this grade level was not satisfied.</td>
-            </tr>
-          </tbody>
-
-        </table>
-
-        <h2 id="about">About</h2>
-
-        <!-- Profile box -->
-        <!-- https://bulma.io/documentation/layout/media-object/ -->
-        <article class="media">
-          <!-- TODO: Replace with profile photo -->
-          <figure class="media-left">
-            <p class="image is-128x128"><img class="is-rounded" src="profile.png"></p>
-          </figure>
-
-          <div class="media-content">
-            <div class="content">
-              <!-- TODO: Replace with contact information -->
-              <p>
-                <strong>Full Name</strong><br/>
-                CS Major, <a href="https://www.usfca.edu/">University of San Francisco</a><br/>
-                <em>Expected Graduation: 20??</em><br/>
-                <i class="fas fa-envelope"></i> <a href="mailto:username@dons.usfca.edu">username@dons.usfca.edu</a>
-              </p>
-
-              <!-- TODO: Replace with brief biography -->
-              <p>
-                Here is a brief bio about yourself. A good rule of thumb is to include at least one technical tidbit (favorite area or course within computer science), and one fun tidbit (such as loving dogs).
-              </p>
-
-              <!-- TODO: Replace or remove tags -->
-              <!-- https://bulma.io/documentation/elements/tag/ -->
-              <div class="heading">Skills</div>
-
-              <div class="tags">
-                <span class="tag">Python</span>
-                <span class="tag">C</span>
-                <span class="tag">Java</span>
-                <span class="tag">JavaScript</span>
-                <span class="tag">HTML</span>
-                <span class="tag">CSS</span>
-                <span class="tag">SVG</span>
-              </div>
-            </div>
-          </div>
-        </article>
-        <!-- End profile box -->
-
-      </div>
-      <!-- End page content -->
-    </div>
-  </section>
+        </p>
 
   <!-- Page footer -->
   <!-- https://bulma.io/documentation/layout/footer/ -->
